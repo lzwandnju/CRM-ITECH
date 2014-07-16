@@ -35,6 +35,7 @@ public class GetDAO {
 		Query query = session.createQuery("from UserAccounts where username:=username");
 		query.setParameter("username", accounts.getUsername());
 		UserAccounts userAccounts = (UserAccounts) query.uniqueResult();
+		session.close();
 		if(userAccounts != null)
 		{
 			if(userAccounts.getPassword().equals(accounts.getPassword()))
@@ -47,9 +48,10 @@ public class GetDAO {
 	}
 	
 	public static void main(String args[]){
+		UserAccounts userAccounts = new UserAccounts();
+		userAccounts.setUsername("ankit");
+		userAccounts.setPassword("1234");
+		System.out.println(new GetDAO().validateCheck(userAccounts));
 		
-		for(FieldMt f: new GetDAO().getFieldMt()){
-			System.out.println(f.getFieldname());
-		}
 	}
 }
