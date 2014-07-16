@@ -5,6 +5,8 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.POJO.FieldMt;
+import org.POJO.UserAccounts;
+import org.POJO.UserViewDetails;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -24,8 +26,26 @@ public class GetDAO {
 	public List<FieldMt> getFieldMt(){
 		Session session=sessionfactory.openSession();
 		Query query = session.createQuery("from FieldMt");
+		session.close();
 		return query.list();
 	}
+	
+	public boolean validateCheck(UserAccounts accounts){
+		Session session=sessionfactory.openSession();
+		Query query = session.createQuery("from UserAccounts where username:=username");
+		query.setParameter("username", accounts.getUsername());
+		UserAccounts userAccounts = (UserAccounts) query.uniqueResult();
+		if(userAccounts != null)
+		{
+			if(userAccounts.getPassword().equals(accounts.getPassword()))
+				return true;
+			else
+				return false;
+		}
+		else	
+			return false;
+	}
+	
 	public static void main(String args[]){
 		
 		for(FieldMt f: new GetDAO().getFieldMt()){

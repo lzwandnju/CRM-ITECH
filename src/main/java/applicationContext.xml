@@ -17,7 +17,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springf
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/itechcrm" />
 		<property name="username" value="root" />
-		<property name="password" value="" />
+		<property name="password" value="root" />
 	</bean>
 	<bean id="sessionfactory"
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
