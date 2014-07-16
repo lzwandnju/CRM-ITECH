@@ -31,6 +31,14 @@ public class MainController {
 		model.addAttribute("fields", getservice.getFieldMt());
 		return "getField";
 	}
+	
+	@RequestMapping(value="/login",method=RequestMethod.GET)
+	public String login(Model model)
+	{
+		model.addAttribute("user", new UserAccounts());
+		return "login";	}
+
+
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@RequestParam(value = "user") UserAccounts username,
